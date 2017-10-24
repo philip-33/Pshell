@@ -4,6 +4,7 @@
 # Windows will normally attempt to restart explorer.exe automatically if it closes.
 
 Clear-host
+Start-Sleep 3
 $process = Get-Process explorer
 
 if($process.Name -eq 'explorer')
