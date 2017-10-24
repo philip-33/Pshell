@@ -1,0 +1,43 @@
+Notes for ex_res:
+
+to go through an array:
+$array | ForEach {Write-Host $value}
+
+More info about Win32_StartupCommand
+https://www.online-tech-tips.com/computer-tips/list-windows-startup-programs/
+
+Win32_StartupCommand
+important components for this script:
+    
+    Command: The Command property indicates the string representing the command line run by the startup command.
+    Datatype: String
+    Example: c:\winnt\notepad.exe myfile.txt
+
+    User: The User property indicates the user name for whom this startup command will run.
+    Datatype: String
+    Example: mydomain\myname
+
+    UserSID: The UserSID property indicates the SID of the user for whom this startup command will run. That User property may be empty but UserSID still has a value if the user name can’t be resolved (like in the case of a deleted user). The property is helpful to distinguish between commands associated w/ two different users with unresolved names. It may be NULL when the command is associated with items not actually identifying a user like All Users.
+    Datatype: String
+    Example: S-1-5-21-1579938362-1064596589-3161144252-1006
+
+The "command" and "user" portions are important for executing the program at a later date. However...
+
+The script shouldn't start every program thrown back by the query.
+This link has instructions for diving into the registry to check whether the program is flagged as enabled/disabled
+https://powershell.org/forums/topic/enabledisable-startup-programs-in-windows-10/
+
+This link has an example of the Start-Process commandlet that runs a command as a different user
+https://blogs.technet.microsoft.com/benshy/2012/06/04/using-a-powershell-script-to-run-as-a-different-user-elevate-the-process/
+
+This link shows how to run the command and arguments in the same line
+https://stackoverflow.com/questions/651223/powershell-start-process-and-cmdline-switches#651292
+
+Start-Process documentation. It seems like "-verb runAs" is the particular setup I want
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-process?view=powershell-5.1
+
+The final script will 
+get the list of startup programs, 
+check which ones are disabled, 
+remove disabled startup items from the list,
+start the remaining items.
