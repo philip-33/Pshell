@@ -23,6 +23,13 @@ important components for this script:
 
 The "command" and "user" portions are important for executing the program at a later date. However...
 
+These articles deal with objects in powershell. 
+Necessary for handling the object returned by Get-CimInstance Win32_StartupCommand
+https://technet.microsoft.com/en-us/library/ff730946.aspx
+https://www.computerworld.com/article/2954261/data-center/understanding-and-using-objects-in-powershell.html
+https://docs.microsoft.com/en-us/powershell/scripting/getting-started/fundamental/using-variables-to-store-objects?view=powershell-5.1
+windowsitpro.com/powershell/powershell-basics-custom-objects
+
 The script shouldn't start every program thrown back by the query.
 This link has instructions for diving into the registry to check whether the program is flagged as enabled/disabled
 https://powershell.org/forums/topic/enabledisable-startup-programs-in-windows-10/
